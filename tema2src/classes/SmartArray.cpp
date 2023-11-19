@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
-
+#include "utils.h"
 #include "SmartArray.h"
 
 SmartArray::SmartArray(int totalSize) {
@@ -151,11 +151,6 @@ void SmartArray::sortArray() {
 }
 
 void SmartArray::print() {
-    std::cout << "SmartArray::: [";
-
-    for(int i=0; i<n; i++) {
-        std::cout << array[i] << " ";
+std::cout << "SmartArray::: ";
+    utils::printArrayOfInt(array, n);
     }
-
-    std::cout << "\b]\n";
-}
