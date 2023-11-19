@@ -4,7 +4,7 @@
 #include "SmartInterface.h"
 
 
-class SmartArray: public ArrayInterface {
+class SmartArray: public SmartInterface {
     protected:
         int n = 0;
         int avMemory = 0;
