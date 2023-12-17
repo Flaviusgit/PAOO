@@ -20,4 +20,5 @@ class Attendance {
         std::vector<std::string> attendanceSheet;
 
         int getRandomDuration(int minDuration, int maxDuration) const;
+        //
 };
