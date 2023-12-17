@@ -1,28 +1,24 @@
-#include "Attendance.h"
+#pragma once
 
-Attendance::Attendance() {
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <memory>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
 
-    std::srand(static_cast<unsigned>(std::time(nullptr)));
-}
+class Attendance {
+    public:
+        Attendance();
+        void displayAttendanceSheet() const;
 
-void Attendance::displayAttendanceSheet() const {
-    std::cout << "\nFinal Attendance Sheet:\n";
-    for (size_t i = 0; i < attendanceSheet.size(); ++i) {
-        std::cout << "Slot " << i + 1 << ": " << attendanceSheet[i] << std::endl;
-    }
-}
+        void writeNameOnAttendanceSheet(int id, const std::string& name);
 
-int Attendance::getRandomDuration(int minDuration, int maxDuration) const {
-    return std::rand() % (maxDuration - minDuration + 1) + minDuration;
-}
+    private:
+        std::mutex attendanceMutex;
+        std::vector<std::string> attendanceSheet;
 
-void Attendance::writeNameOnAttendanceSheet(int id, const std::string& name) {
-    
-    std::this_thread::sleep_for(std::chrono::milliseconds(getRandomDuration(100, 1000)));
-
-    std::lock_guard<std::mutex> lock(attendanceMutex);
-
-    attendanceSheet.push_back(name);
-
-    std::cout << "Student " << id << " wrote their name on the attendance sheet." << std::endl;
-}
+        int getRandomDuration(int minDuration, int maxDuration) const;
+        //
+};
